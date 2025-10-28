@@ -2,32 +2,30 @@ package com.example.UberReviewService.models;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 
-
+@Data
+@Builder
 @Entity
-@Table(name = "bookingreview")
-public class Reviews {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int Id;
+        @Table(name = "bookingreview")
+@AllArgsConstructor
+@NoArgsConstructor
+public class Reviews extends BaseModel {
+
     @Column(nullable = false)
-    String content;
+    private String content;
 
     @Column(nullable = true)
-    float rating;
+    private double rating;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    Date createdAt;
 
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    Date updatedAt;
 }
