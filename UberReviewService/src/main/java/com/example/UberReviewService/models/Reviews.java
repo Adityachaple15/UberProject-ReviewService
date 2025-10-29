@@ -2,10 +2,7 @@ package com.example.UberReviewService.models;
 
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -13,12 +10,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 
-@Data
+
+@Getter
+@Setter
+@ToString
 @Builder
 @Entity
-        @Table(name = "bookingreview")
+@Table(name = "booking_review")
 @AllArgsConstructor
 @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Reviews extends BaseModel {
 
     @Column(nullable = false)
