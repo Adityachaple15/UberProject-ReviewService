@@ -22,7 +22,7 @@ public abstract class BaseModel {
     @CreatedDate
     protected Date createdAt;
 
-    @Column(nullable = false)
+
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     protected Date updatedAt;
