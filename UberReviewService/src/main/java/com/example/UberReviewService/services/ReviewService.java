@@ -1,13 +1,13 @@
 package com.example.UberReviewService.services;
 
 import com.example.UberReviewService.models.Booking;
-import com.example.UberReviewService.models.Reviews;
+import com.example.UberReviewService.models.Driver;
 import com.example.UberReviewService.repositories.BookingRepository;
+import com.example.UberReviewService.repositories.DriverRepository;
 import com.example.UberReviewService.repositories.ReviewRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +16,12 @@ public class ReviewService implements CommandLineRunner {
     private final ReviewRepository reviewRepository;
     private  final BookingRepository bookingRepository;
 
-    public ReviewService (ReviewRepository reviewRepository, BookingRepository bookingRepository) {
+    private final DriverRepository driverRepository;
+
+    public ReviewService (ReviewRepository reviewRepository, BookingRepository bookingRepository, DriverRepository driverRepository) {
         this.reviewRepository=reviewRepository;
         this.bookingRepository = bookingRepository;
+        this.driverRepository = driverRepository;
     }
 
     @Override
@@ -46,10 +49,19 @@ public class ReviewService implements CommandLineRunner {
 //            System.out.println(r.getContent());
 //        }
 
-        Optional<Booking> b = bookingRepository.findById(2l);
-        if(b.isPresent()){
-            bookingRepository.delete(b.get());
-        }
+//        Optional<Booking> b = bookingRepository.findById(2l);
+//        if(b.isPresent()){
+//            bookingRepository.delete(b.get());
+//        }
        // reviewRepository.deleteById(2);
+
+        Optional<Driver> driver = driverRepository.findByIdAndLicenseNumber(1l,"MH340209");
+        if (driver.isPresent()){
+            System.out.println(driver.get().getName());
+            List<Booking> bookings= bookingRepository.findAllByDriverId(1L);
+            for(Booking booking: bookings){
+                System.out.println(booking.getBookingStatus());
+            }
+        }
     }
 }
