@@ -8,7 +8,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-public class PassengerReview extends Reviews{
+public class PassengerReview extends Review {
     @Column(nullable = false)
     private String PassengerReviewContent;
     @Column(nullable = false)
