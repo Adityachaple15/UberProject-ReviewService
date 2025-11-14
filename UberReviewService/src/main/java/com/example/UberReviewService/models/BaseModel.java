@@ -16,7 +16,7 @@ import java.util.Date;
 public abstract class BaseModel {
     @jakarta.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    protected int Id;
+    protected Long Id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate

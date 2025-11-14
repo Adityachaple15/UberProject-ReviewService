@@ -9,8 +9,8 @@ import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review,Integer> {
-    Integer countAllByRatingIsLessThanEqual(Integer givenRaing);
+public interface ReviewRepository extends JpaRepository<Review,Long> {
+    Integer countAllByRatingIsLessThanEqual(Integer givenRating);
 
     List<Review> findAllByRatingIsLessThanEqual(Integer givenRating);
 
