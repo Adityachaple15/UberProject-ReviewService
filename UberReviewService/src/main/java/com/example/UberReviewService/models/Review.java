@@ -4,9 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 
-@Getter
-@Setter
-@ToString
+@Data
 @Builder
 @Entity
 @Table(name = "booking_review")
@@ -19,6 +17,11 @@ public class Review extends BaseModel {
     private String content;
 
     @Column(nullable = true)
-    private double rating;
+    private Double rating;
+
+//    @OneToOne(cascade = {CascadeType.ALL}, fetch = FetchType.LAZY)
+//    @JoinColumn(nullable = false)
+//    private Booking booking; // we have defined a 1:1 relationship between booking and review
+
 
 }

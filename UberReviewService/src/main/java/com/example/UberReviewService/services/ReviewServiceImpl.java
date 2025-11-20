@@ -2,6 +2,8 @@ package com.example.UberReviewService.services;
 
 import com.example.UberReviewService.models.Review;
 import com.example.UberReviewService.repositories.ReviewRepository;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,4 +37,28 @@ public class ReviewServiceImpl implements ReviewService {
             return false;
         }
     }
+
+    @Override
+    @Transactional
+    public Review publishReview(Review review) {
+        return this.reviewRepository.save(review);
+    }
+
+
+
+    @Override
+    public Review updateReview(Long id, Review newReviewData) {
+        Review review = reviewRepository.findById(id)
+                .orElseThrow(EntityNotFoundException::new);
+
+        if(newReviewData.getRating() != null){
+            review.setRating(newReviewData.getRating());
+        }
+        if(newReviewData.getContent() != null){
+            review.setContent(newReviewData.getContent());
+        }
+
+        return reviewRepository.save(review);
+    }
+
 }
